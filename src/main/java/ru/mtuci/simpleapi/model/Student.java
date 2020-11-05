@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
@@ -17,10 +16,8 @@ import javax.validation.constraints.NotNull;
 @EqualsAndHashCode(callSuper = true)
 public class Student extends AbstractBaseEntity {
     @NotBlank
-    @SafeHtml
     private String name;
     @NotBlank
-    @SafeHtml
     private String surname;
     @NotNull
     private Integer group_id;

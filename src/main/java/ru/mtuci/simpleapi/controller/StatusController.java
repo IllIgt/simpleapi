@@ -19,6 +19,6 @@ public class StatusController {
     @GetMapping
     public Status get() throws UnknownHostException {
         log.info("get status");
-        return new Status(InetAddress.getLocalHost().getHostAddress(), "Hello");
+        return new Status(InetAddress.getLocalHost().getHostAddress());
     }
 }
