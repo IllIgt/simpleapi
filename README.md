@@ -51,3 +51,4 @@ mvn package -Dmaven.test.skip=true
 `curl -X DELETE http://127.0.0.1:8080/api/v1/students/3`
 
 
+[**Лабораторная работа №2**](https://github.com/IllIgt/simpleapi/blob/master/Kubernetes.md)
