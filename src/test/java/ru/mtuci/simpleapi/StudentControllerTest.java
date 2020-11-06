@@ -19,6 +19,7 @@ import java.util.Optional;
 
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -88,11 +89,9 @@ class StudentControllerTest {
     @Test
     void shouldDeleteUser() throws Exception {
         Long studentId = 1L;
-        Student student = new Student("studentik", "studentikovich", 132);
-        given(studentService.get(studentId)).willReturn(student);
-        doNothing().when(studentService).delete(student.getId());
+        doNothing().when(studentService).delete(studentId);
 
-        this.mockMvc.perform(delete("/api/v1/students/{id}", student.getId()))
+        this.mockMvc.perform(delete("/api/v1/students/{id}", studentId))
                 .andExpect(status().isNoContent());
     }
 }
