@@ -31,5 +31,7 @@ public class SmokeTests {
         assertThat(studentController).isNotNull();
         assertThat(studentControllerWithService).isNotNull();
     }
+
+
 }
 
