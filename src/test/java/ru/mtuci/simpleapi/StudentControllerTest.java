@@ -55,7 +55,7 @@ class StudentControllerTest {
 
         given(studentService.get(studentId)).willReturn(student);
 
-        this.mockMvc.perform(get("/api/students/{id}", studentId))
+        this.mockMvc.perform(get("/api/v1/students/{id}", studentId))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", is(student.getName())))
                 .andExpect(jsonPath("$.surname", is(student.getSurname())))
