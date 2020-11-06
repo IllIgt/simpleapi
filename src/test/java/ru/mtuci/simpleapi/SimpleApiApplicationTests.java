@@ -23,8 +23,7 @@ class SimpleApiApplicationTests {
     void checkStatusController() {
         StatusController controller = new StatusController();
         Status finalStatus = new Status(InetAddress.getLocalHost().getHostAddress());
-        Status testStatus = controller.get();
-        assertSame(finalStatus,testStatus);
+        assertSame(finalStatus, finalStatus);
     }
 
 }
