@@ -2,6 +2,8 @@ package ru.mtuci.simpleapi;
 
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.mtuci.simpleapi.controller.StatusController;
 import ru.mtuci.simpleapi.dto.Status;
@@ -9,6 +11,7 @@ import ru.mtuci.simpleapi.dto.Status;
 import java.net.InetAddress;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
+
 
 
 @SpringBootTest
