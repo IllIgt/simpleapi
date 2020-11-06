@@ -14,6 +14,7 @@ import ru.mtuci.simpleapi.service.StudentService;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -21,7 +22,7 @@ import static org.hamcrest.CoreMatchers.is;
 
 @WebMvcTest(controllers = StudentController.class)
 @ActiveProfiles("test")
-class UserControllerTest {
+class StudentControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -45,5 +46,19 @@ class UserControllerTest {
 
         this.mockMvc.perform(get("/api/v1/students")).andExpect(status().isOk())
                 .andExpect(jsonPath("$.size()", is(studentList.size())));
+    }
+
+    @Test
+    void shouldFetchOneStudentById() throws Exception {
+        final Long studentId = 1L;
+        final Student student = new Student("Isaac","Isaacovich", 3);
+
+        given(studentService.get(studentId)).willReturn(student);
+
+        this.mockMvc.perform(get("/api/users/{id}", studentId))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is(student.getName())))
+                .andExpect(jsonPath("$.surname", is(student.getSurname())))
+                .andExpect(jsonPath("$.group_id", is(student.getGroup_id())));
     }
 }
