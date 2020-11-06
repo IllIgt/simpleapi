@@ -15,12 +15,12 @@ env:
 addons:
   sonarcloud:
     organization: "illigt"
-    token:
-      secure: $SONAR_TOKEN
+    token: ${SONAR_TOKEN}
 
 script:
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=IllIgt_simpleapi
   - ./mvnw clean install -B
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=IllIgt_simpleapi
+
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
