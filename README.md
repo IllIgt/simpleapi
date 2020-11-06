@@ -52,3 +52,10 @@ mvn package -Dmaven.test.skip=true
 
 
 [**Лабораторная работа №2**](https://github.com/IllIgt/simpleapi/blob/master/Kubernetes.md)
+
+
+
+###Лабораторная работа №3: CI/CD и деплой приложения в Heroku
+
+Цель: знакомство с CI/CD и его реализацией на примере Travis CI и Heroku
+
