@@ -38,19 +38,19 @@ mvn package -Dmaven.test.skip=true
 
 ### Endpoints
 
-1. Получение имени хоста `curl -X GET http://127.0.0.1:8080/api/v1/status`
+1. Получение имени хоста `curl -X GET http://ratnikovsimpleapi.herokuapp.com/api/v1/status`
 
 2. Получение списка студентов
-`curl -X GET http://127.0.0.1:8080/api/v1/students`
+`curl -X GET http://ratnikovsimpleapi.herokuapp.com/api/v1/students`
 
 3. Получение информации о студенте по id
-`curl -X GET http://127.0.0.1:8080/api/v1/students/1`
+`curl -X GET http://ratnikovsimpleapi.herokuapp.com/api/v1/students/1`
 
 4. Добавление информации о студенте
-`curl -X POST http://127.0.0.1:8080/api/v1/students -d '{"name": "Имярек", "surname": "Имярекович", "group_id": 112}' -H "Content-Type: application/json"
+`curl -X POST http://ratnikovsimpleapi.herokuapp.com/api/v1/students -d '{"name": "Имярек", "surname": "Имярекович", "group_id": 112}' -H "Content-Type: application/json"
 `
 5. Удаление информации о студенте по id
-`curl -X DELETE http://127.0.0.1:8080/api/v1/students/3`
+`curl -X DELETE http://ratnikovsimpleapi.herokuapp.com/api/v1/students/3`
 
 
 [**Лабораторная работа №2**](https://github.com/IllIgt/simpleapi/blob/master/Kubernetes.md)
@@ -61,4 +61,4 @@ mvn package -Dmaven.test.skip=true
 
 Цель: знакомство с CI/CD и его реализацией на примере Travis CI и Heroku
 
-[**HEROKU**](https://dashboard.heroku.com/apps/ratnikovsimpleapi)
+[**HEROKU**](https://ratnikovsimpleapi.herokuapp.com)
