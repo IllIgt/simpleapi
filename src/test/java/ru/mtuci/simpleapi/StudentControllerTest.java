@@ -79,7 +79,7 @@ class StudentControllerTest {
         this.mockMvc.perform(post("/api/v1/students")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(objectMapper.writeValueAsString(student)))
-                .andExpect(status().isCreated())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", is(student.getName())))
                 .andExpect(jsonPath("$.surname", is(student.getSurname())))
                 .andExpect(jsonPath("$.group_id", is(student.getGroup_id())));
@@ -93,6 +93,6 @@ class StudentControllerTest {
         doNothing().when(studentService).delete(student.getId());
 
         this.mockMvc.perform(delete("/api/v1/students/{id}", student.getId()))
-                .andExpect(status().isOk());
+                .andExpect(status().isNoContent());
     }
 }
