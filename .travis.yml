@@ -17,7 +17,7 @@ script:
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo "$TRAVIS_BRANCH"; fi`
-  - export IMAGE_NAME=myapi/my-docker-repo
+  - export IMAGE_NAME=sheffer/simplerepo
   - docker build -t $IMAGE_NAME:latest .
   - docker tag $IMAGE_NAME:latest $IMAGE_NAME:$TAG
   - docker push $IMAGE_NAME:$TAG

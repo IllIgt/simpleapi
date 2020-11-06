@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/IllIgt/simpleapi.svg?branch=master)](https://travis-ci.com/IllIgt/simpleapi)
+
 ## Технологии разработки программного обеспечения
 
 ### Лабораторная работа №1: создание микросервиса на Spring Boot с базой данных
