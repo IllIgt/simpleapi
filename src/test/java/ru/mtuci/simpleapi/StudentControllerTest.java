@@ -5,17 +5,22 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.mtuci.simpleapi.controller.StudentController;
 import ru.mtuci.simpleapi.model.Student;
 import ru.mtuci.simpleapi.service.StudentService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.hamcrest.CoreMatchers.is;
@@ -31,6 +36,9 @@ class StudentControllerTest {
     private StudentService studentService;
 
     private List<Student> studentList;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @BeforeEach
     void setUp() {
@@ -60,5 +68,31 @@ class StudentControllerTest {
                 .andExpect(jsonPath("$.name", is(student.getName())))
                 .andExpect(jsonPath("$.surname", is(student.getSurname())))
                 .andExpect(jsonPath("$.group_id", is(student.getGroup_id())));
+    }
+
+    @Test
+    void shouldCreateNewStudent() throws Exception {
+        given(studentService.save(any(Student.class))).willAnswer((invocation) -> invocation.getArgument(0));
+
+        Student student = new Student("student", "studentov", 867);
+
+        this.mockMvc.perform(post("/api/v1/students")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(objectMapper.writeValueAsString(student)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.name", is(student.getName())))
+                .andExpect(jsonPath("$.surname", is(student.getSurname())))
+                .andExpect(jsonPath("$.group_id", is(student.getGroup_id())));
+    }
+
+    @Test
+    void shouldDeleteUser() throws Exception {
+        Long studentId = 1L;
+        Student student = new Student("studentik", "studentikovich", 132);
+        given(studentService.get(studentId)).willReturn(student);
+        doNothing().when(studentService).delete(student.getId());
+
+        this.mockMvc.perform(delete("/api/v1/students/{id}", student.getId()))
+                .andExpect(status().isOk());
     }
 }
