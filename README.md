@@ -55,7 +55,7 @@ mvn package -Dmaven.test.skip=true
 
 
 
-###Лабораторная работа №3: CI/CD и деплой приложения в Heroku
+### Лабораторная работа №3: CI/CD и деплой приложения в Heroku
 
 Цель: знакомство с CI/CD и его реализацией на примере Travis CI и Heroku
 
