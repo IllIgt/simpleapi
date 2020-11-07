@@ -1,13 +1,15 @@
 package ru.mtuci.simpleapi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -19,6 +21,9 @@ public class Student extends AbstractBaseEntity {
     private String name;
     @NotBlank
     private String surname;
-    @NotNull
-    private Integer group_id;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "group_id")
+    private Group group;
+
 }

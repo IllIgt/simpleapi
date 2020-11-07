@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.mtuci.simpleapi.controller.StatusController;
 import ru.mtuci.simpleapi.controller.StudentController;
+import ru.mtuci.simpleapi.service.GroupServiceImpl;
 import ru.mtuci.simpleapi.service.StudentServiceImpl;
 
 @SpringBootTest
@@ -23,7 +24,10 @@ public class SmokeTests {
     private StudentServiceImpl studentService;
 
     @Autowired
-    private StudentController studentControllerWithService = new StudentController(studentService);
+    private GroupServiceImpl groupService;
+
+    @Autowired
+    private final StudentController studentControllerWithService = new StudentController(studentService);
 
     @Test
     public void contextLoads() throws Exception {

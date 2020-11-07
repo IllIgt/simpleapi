@@ -20,7 +20,7 @@
 cd ./simpleapi
 mvn package -Dmaven.test.skip=true
 ```
-Собранный проект находится в директории `./target` проекта simpleape
+Собранный проект находится в директории `./target` проекта simpleapi
 
 ### Сборка Docker образа
 Сборка образа выполняется из корневой директории проекта, 
@@ -47,11 +47,16 @@ mvn package -Dmaven.test.skip=true
 `curl -X GET http://ratnikovsimpleapi.herokuapp.com/api/v1/students/1`
 
 4. Добавление информации о студенте
-`curl -X POST http://ratnikovsimpleapi.herokuapp.com/api/v1/students -d '{"name": "Имярек", "surname": "Имярекович", "group_id": 112}' -H "Content-Type: application/json"
+`curl -X POST http://ratnikovsimpleapi.herokuapp.com/api/v1/students -d '{"name": "Имярек", "surname": "Имярекович", "group": {"id": 2}}' -H "Content-Type: application/json"
 `
 5. Удаление информации о студенте по id
 `curl -X DELETE http://ratnikovsimpleapi.herokuapp.com/api/v1/students/3`
 
+6. Получение всех групп студентов
+`curl -X GET http://ratnikovsimpleapi.herokuapp.com/api/v1/groups`
+
+7. 3. Получение информации о группе по id
+`curl -X GET http://ratnikovsimpleapi.herokuapp.com/api/v1/groups/1`
 
 [**Лабораторная работа №2**](https://github.com/IllIgt/simpleapi/blob/master/Kubernetes.md)
 
@@ -63,6 +68,6 @@ mvn package -Dmaven.test.skip=true
 
 [**HEROKU**](https://ratnikovsimpleapi.herokuapp.com)
 
-###Extras
+### Extras
 
 [**Sonar code analyze**](https://sonarcloud.io/dashboard?id=IllIgt_simpleapi)

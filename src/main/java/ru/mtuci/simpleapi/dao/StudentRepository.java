@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.mtuci.simpleapi.model.Student;
 
 
-@Transactional(readOnly = true)
+@Transactional
 public interface StudentRepository extends JpaRepository <Student, Long> {
     @Transactional
     @Modifying

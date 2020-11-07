@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.mtuci.simpleapi.model.Student;
+import ru.mtuci.simpleapi.service.GroupService;
 import ru.mtuci.simpleapi.service.StudentService;
 
 import java.util.List;
@@ -20,7 +21,9 @@ public class StudentController {
 
     @Autowired
     public StudentController(StudentService studentService) {
+
         this.studentService = studentService;
+
     }
 
     @GetMapping
