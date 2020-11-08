@@ -66,7 +66,7 @@ mvn package -Dmaven.test.skip=true
 
 Цель: знакомство с CI/CD и его реализацией на примере Travis CI и Heroku
 
-[**HEROKU**](https://ratnikovsimpleapi.herokuapp.com)
+[**HEROKU**](https://ratnikovsimpleapi.herokuapp.com/api/v1/status)
 
 ### Extras
 
