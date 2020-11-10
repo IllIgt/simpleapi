@@ -28,6 +28,10 @@ public class Group {
 
     @NotBlank
     private String code;
+
     @NotBlank
     private String specialization;
+
+    @OneToMany(mappedBy = "group")
+    private List<Student> students = new ArrayList<>();
 }

@@ -1,13 +1,14 @@
 package ru.mtuci.simpleapi.service;
 
+import ru.mtuci.simpleapi.dto.StudentDTO;
 import ru.mtuci.simpleapi.model.Student;
 
 import java.util.List;
 
 public interface StudentService {
-    Student get(Long id);
+    StudentDTO get(Long id);
 
-    List<Student> getAll();
+    List<StudentDTO> getAll();
 
     Student save(Student student);
 

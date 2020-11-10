@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import ru.mtuci.simpleapi.dto.StudentDTO;
 import ru.mtuci.simpleapi.model.Student;
 import ru.mtuci.simpleapi.service.GroupService;
 import ru.mtuci.simpleapi.service.StudentService;
@@ -27,13 +28,13 @@ public class StudentController {
     }
 
     @GetMapping
-    public List<Student> getAll() {
+    public List<StudentDTO> getAll() {
         log.info("get all students");
         return studentService.getAll();
     }
 
     @GetMapping(value = "/{id}")
-    public Student get(@PathVariable("id") Long id) {
+    public StudentDTO get(@PathVariable("id") Long id) {
         log.info("get student id " + id);
         return studentService.get(id);
 

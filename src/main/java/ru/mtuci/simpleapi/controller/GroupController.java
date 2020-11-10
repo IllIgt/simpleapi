@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.mtuci.simpleapi.dao.GroupRepository;
+import ru.mtuci.simpleapi.dto.GroupDTO;
 import ru.mtuci.simpleapi.model.Group;
 import ru.mtuci.simpleapi.service.GroupService;
 
@@ -24,17 +25,15 @@ public class GroupController {
     public final static String REST_URL = "/api/v1/groups";
 
     private GroupService groupService;
-    private final GroupRepository groupRepository;
+
     @Autowired
     public GroupController(GroupService groupService, GroupRepository groupRepository) {
-        this.groupRepository = groupRepository;
         this.groupService = groupService;
     }
 
     @GetMapping
-    public List<Group> getAll() {
+    public List<GroupDTO> getAll() {
         log.info("get all groups");
-        System.out.println(groupService.getAll());
         return groupService.getAll();
     }
 
