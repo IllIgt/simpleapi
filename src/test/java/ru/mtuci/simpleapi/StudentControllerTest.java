@@ -130,7 +130,7 @@ class StudentControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", is(student.getName())))
                 .andExpect(jsonPath("$.surname", is(student.getSurname())))
-                .andExpect(jsonPath("$.group.id", is(student.getGroup().getId().intValue())));
+                .andExpect(jsonPath("$.groupId", is(student.getGroup().getId().intValue())));
     }
 
     @Test
