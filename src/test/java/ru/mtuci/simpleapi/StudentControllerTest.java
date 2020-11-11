@@ -116,14 +116,22 @@ class StudentControllerTest {
 
     @Test
     void shouldCreateNewStudent() throws Exception {
-        given(studentService.save(any(Student.class))).willAnswer((invocation) -> invocation.getArgument(0));
 
         Group group = new Group();
         group.setId(1L);
         group.setCode("MGMT");
         group.setSpecialization("CoolSpec");
 
+        final StudentDTO studentDTO = new StudentDTO();
+        studentDTO.setId(25L);
+        studentDTO.setName("student");
+        studentDTO.setSurname("studentov");
+        studentDTO.setGroupId(group.getId());
+
+        given(studentService.save(any(Student.class))).willReturn(studentDTO);
+
         Student student = new Student("student", "studentov", group);
+        System.out.println(objectMapper.writeValueAsString(student));
         this.mockMvc.perform(post("/api/v1/students")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(objectMapper.writeValueAsString(student)))
