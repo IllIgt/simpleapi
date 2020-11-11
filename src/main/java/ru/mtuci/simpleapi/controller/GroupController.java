@@ -52,7 +52,7 @@ public class GroupController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public GroupDTO save(@RequestBody Group group) {
+    public GroupDTO save(@RequestBody GroupDTO group) {
         log.info("save group");
         return groupService.save(group);
     }

@@ -55,7 +55,7 @@ mvn package -Dmaven.test.skip=true
 `curl -X GET */students/{id}`
 
 4. Добавление информации о студенте
-`curl -X POST */students -d '{"name": "Имярек", "surname": "Имярекович", "group": {"id": 2}}' -H "Content-Type: application/json"
+`curl -X POST */students -d '{"name": "Имярек", "surname": "Имярекович", "groupId": 2}' -H "Content-Type: application/json"
 `
 5. Удаление информации о студенте по id
 `curl -X DELETE */students/{id}`

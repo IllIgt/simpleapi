@@ -13,7 +13,7 @@ public interface GroupService {
 
     List<GroupDTO> getAll();
 
-    GroupDTO save(Group group);
+    GroupDTO save(GroupDTO group);
 
     List<StudentDTO> getGroupStudents(Long id);
 

@@ -13,6 +13,7 @@ import ru.mtuci.simpleapi.mapper.GroupMapper;
 import ru.mtuci.simpleapi.model.Group;
 import ru.mtuci.simpleapi.model.Student;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -53,7 +54,9 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public GroupDTO save(Group group) {
+    public GroupDTO save(GroupDTO groupDTO) {
+        Group group = modelMapper.map(groupDTO, Group.class);
+        group.setStudents(new ArrayList<>());
         return modelMapper.map(groupRepository.save(group), GroupDTO.class);
     }
 

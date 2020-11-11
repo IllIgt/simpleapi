@@ -41,7 +41,7 @@ public class StudentController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public StudentDTO save(@RequestBody Student student) {
+    public StudentDTO save(@RequestBody StudentDTO student) {
         log.info("save student");
         return studentService.save(student);
     }

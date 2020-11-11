@@ -128,7 +128,7 @@ class StudentControllerTest {
         studentDTO.setSurname("studentov");
         studentDTO.setGroupId(group.getId());
 
-        given(studentService.save(any(Student.class))).willReturn(studentDTO);
+        given(studentService.save(any(StudentDTO.class))).willReturn(studentDTO);
 
         Student student = new Student("student", "studentov", group);
         System.out.println(objectMapper.writeValueAsString(student));
