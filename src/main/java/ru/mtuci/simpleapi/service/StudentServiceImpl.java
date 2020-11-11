@@ -28,11 +28,13 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentDTO get(Long id) {
-        return modelMapper.map(studentRepository.findById(id), StudentDTO.class);
+        //  TODO add null Handling
+        return modelMapper.map(studentRepository.findById(id).orElse(new Student()), StudentDTO.class);
     }
 
     @Override
     public List<StudentDTO> getAll() {
+        //  TODO add null Handling
         List<Student> students = studentRepository.findAll();
 
         return students.stream()
@@ -42,12 +44,13 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
-    public Student save(Student student) {
-        return studentRepository.save(student);
+    public StudentDTO save(Student student) {
+        return modelMapper.map(studentRepository.save(student), StudentDTO.class);
     }
 
     @Override
     public void delete(Long id) {
         studentRepository.delete(id);
+        //  TODO add Exceptions Handling
     }
 }

@@ -11,5 +11,5 @@ public class GroupDTO {
     Long id;
     String code;
     String specialization;
-    List<Student> students;
+    List<StudentDTO> students;
 }

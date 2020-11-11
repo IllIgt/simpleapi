@@ -38,25 +38,44 @@ mvn package -Dmaven.test.skip=true
 
 ### Endpoints
 
-1. Получение имени хоста `curl -X GET http://ratnikovsimpleapi.herokuapp.com/api/v1/status`
+**HEROKU**
+
+`http://ratnikovsimpleapi.herokuapp.com/api/v1/`
+
+**LOCALHOST**
+
+`http://localhost:8080/api/v1/`
+
+1. Получение имени хоста `curl -X GET */status`
 
 2. Получение списка студентов
-`curl -X GET http://ratnikovsimpleapi.herokuapp.com/api/v1/students`
+`curl -X GET */students`
 
 3. Получение информации о студенте по id
-`curl -X GET http://ratnikovsimpleapi.herokuapp.com/api/v1/students/1`
+`curl -X GET */students/{id}`
 
 4. Добавление информации о студенте
-`curl -X POST http://ratnikovsimpleapi.herokuapp.com/api/v1/students -d '{"name": "Имярек", "surname": "Имярекович", "group": {"id": 2}}' -H "Content-Type: application/json"
+`curl -X POST */students -d '{"name": "Имярек", "surname": "Имярекович", "group": {"id": 2}}' -H "Content-Type: application/json"
 `
 5. Удаление информации о студенте по id
-`curl -X DELETE http://ratnikovsimpleapi.herokuapp.com/api/v1/students/3`
+`curl -X DELETE */students/{id}`
 
 6. Получение всех групп студентов
-`curl -X GET http://ratnikovsimpleapi.herokuapp.com/api/v1/groups`
+`curl -X GET */groups`
 
-7. 3. Получение информации о группе по id
-`curl -X GET http://ratnikovsimpleapi.herokuapp.com/api/v1/groups/1`
+7. Получение информации о группе по id
+`curl -X GET */groups/{id}`
+
+8. Получение информации о студентах конкретной группы
+`curl -X GET */groups/{id}/students`
+
+9. Добавление новой группы
+`curl -X POST */groups -d '{"code": "МБМД2020", "specialization": "Информационные системы"}' -H "Content-Type: application/json"
+`
+10. Удаление группы по id
+`curl -X DELETE */groups/{id}`
+
+
 
 [**Лабораторная работа №2**](https://github.com/IllIgt/simpleapi/blob/master/Kubernetes.md)
 

@@ -7,6 +7,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.mtuci.simpleapi.model.Student;
 
+import java.util.List;
+
 
 @Transactional
 public interface StudentRepository extends JpaRepository <Student, Long> {
@@ -14,4 +16,9 @@ public interface StudentRepository extends JpaRepository <Student, Long> {
     @Modifying
     @Query("DELETE FROM Student s WHERE s.id=:id")
     int delete(@Param("id") Long id);
+
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM Student s WHERE s.id in (:studentsIds)")
+    int delete(@Param("studentsIds") List<Long> studentsIds);
 }

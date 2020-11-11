@@ -36,9 +36,8 @@ public class GroupMapper extends PropertyMap<Group, GroupDTO> {
         };
     }
 
-
     protected void configure() {
-        using(studentConverter).map().setStudents(source.getStudents());
+        using(studentConverter).map(source.getStudents()).setStudents(null);
     }
 };
 
