@@ -3,6 +3,7 @@ package ru.mtuci.simpleapi.service;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.mtuci.simpleapi.dao.CourseRepository;
 import ru.mtuci.simpleapi.dao.GroupRepository;
 import ru.mtuci.simpleapi.dto.CourseDTO;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 
 
 @Service
+@Transactional
 public class CourseServiceImpl implements CourseService {
 
     private final ModelMapper modelMapper;

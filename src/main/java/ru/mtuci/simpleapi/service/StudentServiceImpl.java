@@ -3,6 +3,7 @@ package ru.mtuci.simpleapi.service;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.mtuci.simpleapi.dao.StudentRepository;
 import ru.mtuci.simpleapi.dto.StudentDTO;
 import ru.mtuci.simpleapi.mapper.StudentMapper;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;

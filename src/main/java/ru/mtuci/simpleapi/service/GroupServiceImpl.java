@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.mtuci.simpleapi.dao.CourseRepository;
 import ru.mtuci.simpleapi.dao.GroupRepository;
 import ru.mtuci.simpleapi.dao.StudentRepository;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
+@Transactional
 public class GroupServiceImpl implements GroupService {
 
     private final GroupRepository groupRepository;
@@ -86,6 +88,7 @@ public class GroupServiceImpl implements GroupService {
             List<Group> groups = course.getGroups();
             if (!groups.contains(group)) {
                 groups.add(group);
+                course.setName(null);
                 course.setGroups(groups);
             }
         }
