@@ -3,17 +3,11 @@ package ru.mtuci.simpleapi.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.mtuci.simpleapi.dao.GroupRepository;
 import ru.mtuci.simpleapi.dto.GroupDTO;
 import ru.mtuci.simpleapi.dto.StudentDTO;
-import ru.mtuci.simpleapi.model.Group;
-import ru.mtuci.simpleapi.model.Student;
 import ru.mtuci.simpleapi.service.GroupService;
 
 import java.util.List;

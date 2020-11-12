@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.mtuci.simpleapi.dto.StudentDTO;
-import ru.mtuci.simpleapi.model.Student;
 import ru.mtuci.simpleapi.service.StudentService;
 
 import java.util.List;

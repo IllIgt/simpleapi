@@ -1,13 +1,12 @@
 package ru.mtuci.simpleapi.service;
 
-import org.modelmapper.PropertyMap;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.mtuci.simpleapi.dao.StudentRepository;
+import ru.mtuci.simpleapi.dto.StudentDTO;
 import ru.mtuci.simpleapi.mapper.StudentMapper;
 import ru.mtuci.simpleapi.model.Student;
-import ru.mtuci.simpleapi.dto.StudentDTO;
-import org.modelmapper.ModelMapper;
 
 import java.util.List;
 import java.util.stream.Collectors;

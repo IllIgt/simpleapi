@@ -6,8 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.HashSet;
-import java.util.Set;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -27,15 +28,14 @@ public class Course {
     @NotBlank
     private String name;
 
-    @NotBlank
+    @NotNull
     private Integer hours;
 
-    @NotBlank
-    private Boolean isElective;
+    private boolean elective;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "course_group",
              joinColumns = { @JoinColumn(name = "course_id") },
              inverseJoinColumns = { @JoinColumn(name = "group_id") })
-    private Set<Group> groups = new HashSet<>();
+    private List<Group> groups = new ArrayList<>();
 }

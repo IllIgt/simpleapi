@@ -1,7 +1,6 @@
 package ru.mtuci.simpleapi.service;
 
 import ru.mtuci.simpleapi.dto.StudentDTO;
-import ru.mtuci.simpleapi.model.Student;
 
 import java.util.List;
 
