@@ -88,7 +88,6 @@ public class GroupServiceImpl implements GroupService {
             List<Group> groups = course.getGroups();
             if (!groups.contains(group)) {
                 groups.add(group);
-                course.setName(null);
                 course.setGroups(groups);
             }
         }
