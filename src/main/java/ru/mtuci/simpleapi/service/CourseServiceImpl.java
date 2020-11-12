@@ -8,7 +8,6 @@ import ru.mtuci.simpleapi.dao.GroupRepository;
 import ru.mtuci.simpleapi.dto.CourseDTO;
 import ru.mtuci.simpleapi.mapper.CourseMapper;
 import ru.mtuci.simpleapi.model.Course;
-import ru.mtuci.simpleapi.model.Group;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,11 +48,11 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public CourseDTO save(CourseDTO courseDTO) {
         Course course = modelMapper.map(courseDTO, Course.class);
+
         if(course.getGroups() == null) {
             course.setGroups(new ArrayList<>());
         } else {
-            List<Group> groups = groupRepository.findAllById(courseDTO.getGroups());
-            course.setGroups(groups);
+            course.setGroups(groupRepository.findAllById(courseDTO.getGroups()));
         }
         return modelMapper.map(courseRepository.save(course), CourseDTO.class);
     }

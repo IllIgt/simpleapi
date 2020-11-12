@@ -16,7 +16,7 @@ CREATE TABLE student
     id       BIGINT PRIMARY KEY DEFAULT nextval('student_seq'),
     name     VARCHAR NOT NULL,
     surname  VARCHAR NOT NULL,
-    group_id BIGINT  NOT NULL REFERENCES groups (id),
+    group_id BIGINT REFERENCES groups (id),
     UNIQUE(id)
 );
 

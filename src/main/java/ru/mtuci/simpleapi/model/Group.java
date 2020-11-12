@@ -27,9 +27,9 @@ public class Group {
     @NotBlank
     private String specialization;
 
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     private List<Student> students = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "groups")
+    @ManyToMany(mappedBy = "groups", cascade = CascadeType.ALL)
     private List<Course> courses = new ArrayList<>();
 }

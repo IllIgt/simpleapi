@@ -17,8 +17,11 @@ public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
     private final ModelMapper modelMapper;
 
+
     @Autowired
-    public StudentServiceImpl(StudentRepository studentRepository, ModelMapper modelMapper) {
+    public StudentServiceImpl(
+            StudentRepository studentRepository,
+            ModelMapper modelMapper) {
 
         this.studentRepository = studentRepository;
         this.modelMapper = modelMapper;

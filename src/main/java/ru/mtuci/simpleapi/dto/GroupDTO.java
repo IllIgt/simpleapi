@@ -10,6 +10,6 @@ public class GroupDTO {
     Long id;
     String code;
     String specialization;
-    List<StudentDTO> students;
-    List<CourseDTO> courses;
+    List<Long> studentsId;
+    List<Long> coursesId;
 }
