@@ -36,4 +36,7 @@ public class Group {
 
     @OneToMany(mappedBy = "group")
     private List<Student> students = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "groups")
+    private Set<Course> courses = new HashSet<>();
 }

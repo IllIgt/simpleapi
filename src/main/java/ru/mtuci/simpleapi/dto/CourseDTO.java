@@ -6,10 +6,11 @@ import java.util.List;
 
 
 @Data
-public class GroupDTO {
+public class CourseDTO {
     Long id;
     String code;
-    String specialization;
-    List<StudentDTO> students;
-    List<CourseDTO> courses;
+    String name;
+    String hours;
+    Boolean isElective;
+    List<GroupDTO> groups;
 }
