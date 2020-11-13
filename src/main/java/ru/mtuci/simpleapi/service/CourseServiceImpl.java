@@ -7,11 +7,16 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.mtuci.simpleapi.dao.CourseRepository;
 import ru.mtuci.simpleapi.dao.GroupRepository;
 import ru.mtuci.simpleapi.dto.CourseDTO;
+import ru.mtuci.simpleapi.dto.GroupDTO;
+import ru.mtuci.simpleapi.dto.StudentDTO;
 import ru.mtuci.simpleapi.mapper.CourseMapper;
 import ru.mtuci.simpleapi.model.Course;
+import ru.mtuci.simpleapi.model.Group;
+import ru.mtuci.simpleapi.model.Student;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -60,12 +65,17 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<CourseDTO> getCourseGroups(Long id) {
-        return null;
+    public List<GroupDTO> getCourseGroups(Long id) {
+        Course course = courseRepository.findById(id).orElse(new Course());
+        List<GroupDTO> groups = new ArrayList<>();
+        for (final Group group : course.getGroups()) {
+            groups.add(modelMapper.map(group, GroupDTO.class));
+        }
+        return groups;
     }
 
     @Override
     public void delete(Long id) {
-
+        courseRepository.delete(id);
     }
 }

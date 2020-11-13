@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import ru.mtuci.simpleapi.dto.CourseDTO;
 import ru.mtuci.simpleapi.dto.GroupDTO;
 import ru.mtuci.simpleapi.dto.StudentDTO;
 import ru.mtuci.simpleapi.service.GroupService;
@@ -42,6 +43,12 @@ public class GroupController {
     public List<StudentDTO> getStudents(@PathVariable("id") Long id) {
         log.info("get group students by id " + id);
         return groupService.getGroupStudents(id);
+    }
+
+    @GetMapping(value = "/{id}/courses")
+    public List<CourseDTO> getCourses(@PathVariable("id") Long id) {
+        log.info("get group courses by id " + id);
+        return groupService.getGroupCourses(id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

@@ -57,6 +57,8 @@ mvn package -Dmaven.test.skip=true
 4. Добавление информации о студенте
 `curl -X POST */students -d '{"name": "Имярек", "surname": "Имярекович", "groupId": 2}' -H "Content-Type: application/json"
 `
+    - *not required*:
+      - groupId
 5. Удаление информации о студенте по id
 `curl -X DELETE */students/{id}`
 
@@ -69,12 +71,36 @@ mvn package -Dmaven.test.skip=true
 8. Получение информации о студентах конкретной группы
 `curl -X GET */groups/{id}/students`
 
-9. Добавление новой группы
-`curl -X POST */groups -d '{"code": "МБМД2020", "specialization": "Информационные системы"}' -H "Content-Type: application/json"
+9. Получение информации о курсах конкретной группы
+`curl -X GET */groups/{id}/courses`
+
+10. Добавление новой группы
+`curl -X POST */groups -d '{"code": "МБМД2020", "specialization": "Информационные системы", "studentsId": [1, 2, 3,], "coursesId": [1, 7, 12]}' -H "Content-Type: application/json"
 `
-10. Удаление группы по id
+      - *not required*:
+        - studentsId
+        - coursesId
+    
+11. Удаление группы по id
 `curl -X DELETE */groups/{id}`
 
+12. Добавление нового курса
+`curl -X POST */courses -d '{"code": "ЛААГ2", "name": "Линейная алгебра и аналитиечская геометрия", "elestive": false, "hours": 72, "groupId": 2}' -H "Content-Type: application/json"
+`
+      - *not required*:
+        - groups
+        
+13. Получение списка курсов
+`curl -X GET */courses`
+
+14. Получение конкретного курса по id
+`curl -X GET */courses/id`
+
+15. Получение списка групп конкретного курса
+`curl -X GET */courses/{id}/groups`
+
+16. Удаление курса по id
+`curl -X DELETE */courses/{id}`
 
 
 [**Лабораторная работа №2**](https://github.com/IllIgt/simpleapi/blob/master/Kubernetes.md)

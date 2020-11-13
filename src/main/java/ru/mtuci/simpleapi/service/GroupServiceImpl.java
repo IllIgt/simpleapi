@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.mtuci.simpleapi.dao.CourseRepository;
 import ru.mtuci.simpleapi.dao.GroupRepository;
 import ru.mtuci.simpleapi.dao.StudentRepository;
+import ru.mtuci.simpleapi.dto.CourseDTO;
 import ru.mtuci.simpleapi.dto.GroupDTO;
 import ru.mtuci.simpleapi.dto.StudentDTO;
 import ru.mtuci.simpleapi.mapper.GroupMapper;
@@ -105,6 +106,17 @@ public class GroupServiceImpl implements GroupService {
             students.add(modelMapper.map(student, StudentDTO.class));
         }
         return students;
+    }
+
+    @Override
+    public List<CourseDTO> getGroupCourses(Long id) {
+        //TODO add null handling
+        Group group = groupRepository.findById(id).orElse(new Group());
+        List<CourseDTO> courses = new ArrayList<>();
+        for(final Course course : group.getCourses()) {
+            courses.add(modelMapper.map(course, CourseDTO.class));
+        }
+        return courses;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package ru.mtuci.simpleapi.service;
 
+import ru.mtuci.simpleapi.dto.CourseDTO;
 import ru.mtuci.simpleapi.dto.GroupDTO;
 import ru.mtuci.simpleapi.dto.StudentDTO;
 
@@ -14,6 +15,8 @@ public interface GroupService {
     GroupDTO save(GroupDTO group);
 
     List<StudentDTO> getGroupStudents(Long id);
+
+    List<CourseDTO> getGroupCourses(Long id);
 
     void delete(Long id);
 }

@@ -1,6 +1,7 @@
 package ru.mtuci.simpleapi.service;
 
 import ru.mtuci.simpleapi.dto.CourseDTO;
+import ru.mtuci.simpleapi.dto.GroupDTO;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface CourseService {
 
     CourseDTO save(CourseDTO group);
 
-    List<CourseDTO> getCourseGroups(Long id);
+    List<GroupDTO> getCourseGroups(Long id);
 
     void delete(Long id);
 }
