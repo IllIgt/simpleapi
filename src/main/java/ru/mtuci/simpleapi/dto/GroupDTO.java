@@ -1,10 +1,12 @@
 package ru.mtuci.simpleapi.dto;
 
 import lombok.Data;
+import lombok.Generated;
 
 import java.util.List;
 
 
+@Generated
 @Data
 public class GroupDTO {
     Long id;

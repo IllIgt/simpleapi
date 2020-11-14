@@ -1,11 +1,13 @@
 package ru.mtuci.simpleapi.dto;
 
 import lombok.Data;
+import lombok.Generated;
 
 import java.util.List;
 import java.util.Set;
 
 
+@Generated
 @Data
 public class CourseDTO {
     Long id;
