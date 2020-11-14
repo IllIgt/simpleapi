@@ -11,10 +11,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.mtuci.simpleapi.dto.CourseDTO;
 import ru.mtuci.simpleapi.dto.GroupDTO;
-import ru.mtuci.simpleapi.dto.StudentDTO;
-import ru.mtuci.simpleapi.model.Course;
-import ru.mtuci.simpleapi.model.Group;
-import ru.mtuci.simpleapi.model.Student;
 import ru.mtuci.simpleapi.service.CourseService;
 
 import java.util.ArrayList;
@@ -23,12 +19,12 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 
 @WebMvcTest(controllers = CourseController.class)
 @ActiveProfiles("test")
