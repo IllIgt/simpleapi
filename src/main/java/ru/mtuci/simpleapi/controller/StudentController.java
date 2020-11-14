@@ -5,9 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import ru.mtuci.simpleapi.dto.CourseDTO;
 import ru.mtuci.simpleapi.dto.StudentDTO;
 import ru.mtuci.simpleapi.service.StudentService;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 //  TODO add responses for wrong requests
@@ -39,10 +41,13 @@ public class StudentController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.CREATED)
     @ResponseBody
-    public StudentDTO save(@RequestBody StudentDTO student) {
+    public StudentDTO save(@RequestBody StudentDTO student, HttpServletResponse response) {
         log.info("save student");
-        return studentService.save(student);
+        StudentDTO studentDTO = studentService.save(student);
+        response.setHeader("Location", studentDTO.getId().toString());
+        return studentDTO;
     }
 
     @DeleteMapping("/{id}")

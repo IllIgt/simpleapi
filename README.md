@@ -85,7 +85,7 @@ mvn package -Dmaven.test.skip=true
 `curl -X DELETE */groups/{id}`
 
 12. Добавление нового курса
-`curl -X POST */courses -d '{"code": "ЛААГ2", "name": "Линейная алгебра и аналитиечская геометрия", "elestive": false, "hours": 72, "groupId": 2}' -H "Content-Type: application/json"
+`curl -X POST */courses -d '{"code": "ЛААГ2", "name": "Линейная алгебра и аналитиечская геометрия", "elective": false, "hours": 72, "groupId": 2}' -H "Content-Type: application/json"
 `
       - *not required*:
         - groups

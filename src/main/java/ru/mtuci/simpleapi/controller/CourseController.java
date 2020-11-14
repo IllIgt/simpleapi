@@ -11,6 +11,7 @@ import ru.mtuci.simpleapi.dto.StudentDTO;
 import ru.mtuci.simpleapi.service.CourseService;
 import ru.mtuci.simpleapi.service.GroupService;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 
@@ -41,10 +42,13 @@ public class CourseController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.CREATED)
     @ResponseBody
-    public CourseDTO save(@RequestBody CourseDTO group) {
+    public CourseDTO save(@RequestBody CourseDTO course, HttpServletResponse response) {
         log.info("save course");
-        return courseService.save(group);
+        CourseDTO courseDTO = courseService.save(course);
+        response.setHeader("Location", courseDTO.getId().toString());
+        return courseDTO;
     }
 
     @GetMapping(value = "/{id}/groups")

@@ -11,6 +11,7 @@ import ru.mtuci.simpleapi.dto.GroupDTO;
 import ru.mtuci.simpleapi.dto.StudentDTO;
 import ru.mtuci.simpleapi.service.GroupService;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 //  TODO add responses for wrong requests
@@ -52,10 +53,13 @@ public class GroupController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.CREATED)
     @ResponseBody
-    public GroupDTO save(@RequestBody GroupDTO group) {
+    public GroupDTO save(@RequestBody GroupDTO group, HttpServletResponse response) {
         log.info("save group");
-        return groupService.save(group);
+        GroupDTO groupDTO = groupService.save(group);
+        response.setHeader("Location", groupDTO.getId().toString());
+        return groupDTO;
     }
 
     @DeleteMapping("/{id}")

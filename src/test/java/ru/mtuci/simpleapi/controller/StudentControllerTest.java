@@ -1,4 +1,4 @@
-package ru.mtuci.simpleapi;
+package ru.mtuci.simpleapi.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,8 +35,6 @@ class StudentControllerTest {
     @MockBean
     private StudentService studentService;
 
-    private List<Student> studentList;
-
     private List<StudentDTO> studentDTOList;
 
     @Autowired
@@ -53,10 +51,6 @@ class StudentControllerTest {
         itGroup.setCode("BZDB2032");
         itGroup.setSpecialization("IT");
 
-        this.studentList = new ArrayList<>();
-        this.studentList.add(new Student("Ivan", "Ivanovich", itGroup));
-        this.studentList.add(new Student("Kirill", "Kirillovich", managementGroup));
-        this.studentList.add(new Student("Anton", "Antonovich", managementGroup));
 
         this.studentDTOList = new ArrayList<>();
 
@@ -88,7 +82,7 @@ class StudentControllerTest {
         given(studentService.getAll()).willReturn(studentDTOList);
 
         this.mockMvc.perform(get("/api/v1/students")).andExpect(status().isOk())
-                .andExpect(jsonPath("$.size()", is(studentList.size())));
+                .andExpect(jsonPath("$.size()", is(studentDTOList.size())));
     }
 
     @Test
@@ -131,11 +125,11 @@ class StudentControllerTest {
         given(studentService.save(any(StudentDTO.class))).willReturn(studentDTO);
 
         Student student = new Student("student", "studentov", group);
-        System.out.println(objectMapper.writeValueAsString(student));
         this.mockMvc.perform(post("/api/v1/students")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(objectMapper.writeValueAsString(student)))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
+                .andExpect(header().longValue("Location", studentDTO.getId()))
                 .andExpect(jsonPath("$.name", is(student.getName())))
                 .andExpect(jsonPath("$.surname", is(student.getSurname())))
                 .andExpect(jsonPath("$.groupId", is(student.getGroup().getId().intValue())));
