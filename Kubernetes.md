@@ -63,4 +63,6 @@ spec:
 ## Активные поды в терминале
 ![Image of pods](./markdown/terminal_cluster.png?raw=true)
 
-##
+
+##Kubernetes Dashboard
+[**VIDEO**](https://youtu.be/vidHRsxZXVw)
