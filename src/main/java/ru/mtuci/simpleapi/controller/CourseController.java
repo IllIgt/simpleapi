@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.mtuci.simpleapi.dto.CourseDTO;
 import ru.mtuci.simpleapi.dto.GroupDTO;
 import ru.mtuci.simpleapi.dto.StudentDTO;
+import ru.mtuci.simpleapi.model.Course;
 import ru.mtuci.simpleapi.service.CourseService;
 import ru.mtuci.simpleapi.service.GroupService;
 
@@ -63,4 +64,14 @@ public class CourseController {
         log.info("delete course by id" + id);
         courseService.delete(id);
     }
+
+    @PutMapping("/{id}")
+    @ResponseBody
+    public CourseDTO updateCourse (@PathVariable("id") long id,
+                                     @RequestBody CourseDTO courseDTO) {
+        courseDTO.setId(id);
+        log.info("update course");
+        return courseService.updateCourse(courseDTO);
+    }
+
 }

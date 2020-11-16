@@ -85,7 +85,7 @@ mvn package -Dmaven.test.skip=true
 `curl -X DELETE */groups/{id}`
 
 12. Добавление нового курса
-`curl -X POST */courses -d '{"code": "ЛААГ2", "name": "Линейная алгебра и аналитиечская геометрия", "elective": false, "hours": 72, "groupId": 2}' -H "Content-Type: application/json"
+`curl -X POST */courses -d '{"code": "ЛААГ2", "name": "Линейная алгебра и аналитиечская геометрия", "elective": false, "hours": 72, "groups": [2]}' -H "Content-Type: application/json"
 `
       - *not required*:
         - groups
@@ -101,6 +101,13 @@ mvn package -Dmaven.test.skip=true
 
 16. Удаление курса по id
 `curl -X DELETE */courses/{id}`
+
+17. Обновить информацию о студенте
+`curl -X PUT */students/{id} -d '{"name": "Имярек", "surname": "Имярекович", "groupId": 2}' -H "Content-Type: application/json"
+`
+18. Обновить информацию о курсе
+`curl -X PUT */courses/{id} -d '{"code": "ЛААГ2", "name": "Линейная алгебра и аналитиечская геометрия", "elective": false, "hours": 72, "groups": [2]}' -H "Content-Type: application/json"
+`
 
 
 [**Лабораторная работа №2**](https://github.com/IllIgt/simpleapi/blob/master/Kubernetes.md)

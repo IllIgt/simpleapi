@@ -78,4 +78,27 @@ public class CourseServiceImpl implements CourseService {
     public void delete(Long id) {
         courseRepository.delete(id);
     }
+
+    @Override
+    public CourseDTO updateCourse(CourseDTO courseDTO) {
+        Course newCourse = modelMapper.map(courseDTO, Course.class);
+        if(newCourse.getGroups() == null) {
+            newCourse.setGroups(new ArrayList<>());
+        } else {
+            newCourse.setGroups(groupRepository.findAllById(courseDTO.getGroups()));
+        }
+        Optional<Course> savedCourse = courseRepository.findById(courseDTO.getId());
+        if(savedCourse.isPresent()) {
+            Course course = savedCourse.get();
+            course.setName(newCourse.getName());
+            course.setCode(newCourse.getCode());
+            course.setHours(newCourse.getHours());
+            course.setElective(newCourse.isElective());
+            course.setGroups(newCourse.getGroups());
+
+            return modelMapper.map(courseRepository.save(course), CourseDTO.class);
+        } else {
+            return modelMapper.map(courseRepository.save(newCourse), CourseDTO.class);
+        }
+    }
 }

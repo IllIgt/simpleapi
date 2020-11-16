@@ -157,4 +157,22 @@ class CourseControllerTest {
                 .andExpect(status().isNoContent());
 
     }
+
+    @Test
+    void updateCourse() throws Exception {
+
+        CourseDTO courseDTO = courseDTOs.get(0);
+        given(courseService.updateCourse(any(CourseDTO.class))).willReturn(courseDTO);
+
+        this.mockMvc.perform(put("/api/v1/courses/{id}", courseDTO.getId())
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(objectMapper.writeValueAsString(courseDTO)))
+                .andExpect(jsonPath("$.name", is(courseDTO.getName())))
+                .andExpect(jsonPath("$.code", is(courseDTO.getCode())))
+                .andExpect(jsonPath("$.hours", is(courseDTO.getHours())))
+                .andExpect(jsonPath("$.elective", is(courseDTO.isElective())))
+                .andExpect(jsonPath("$.groups.size()", is(courseDTO.getGroups().size())));
+    }
+
+
 }

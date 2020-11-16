@@ -10,6 +10,7 @@ import ru.mtuci.simpleapi.mapper.StudentMapper;
 import ru.mtuci.simpleapi.model.Student;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -57,5 +58,20 @@ public class StudentServiceImpl implements StudentService {
     public void delete(Long id) {
         studentRepository.delete(id);
         //  TODO add Exceptions Handling
+    }
+
+    @Override
+    public StudentDTO updateStudent(StudentDTO studentDTO) {
+        Student newStudent = modelMapper.map(studentDTO, Student.class);
+        Optional<Student> savedStudent = studentRepository.findById(studentDTO.getId());
+        if(savedStudent.isPresent()) {
+            Student student = savedStudent.get();
+            student.setName(newStudent.getName());
+            student.setSurname(newStudent.getSurname());
+            student.setGroup(newStudent.getGroup());
+            return modelMapper.map(studentRepository.save(student), StudentDTO.class);
+        } else {
+            return modelMapper.map(studentRepository.save(newStudent), StudentDTO.class);
+        }
     }
 }

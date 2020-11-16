@@ -95,4 +95,24 @@ class StudentServiceImplTest {
         studentService.delete(studentId);
         verify(studentRepository).delete(studentId);
     }
+    @Test
+    void update() {
+        Long studentId = student.getId();
+        Group newGroup = student.getGroup();
+        newGroup.setId(125L);
+        Student updatedStudent = new Student();
+        updatedStudent.setId(student.getId());
+        updatedStudent.setName(student.getName());
+        updatedStudent.setSurname(student.getSurname());
+        updatedStudent.setGroup(newGroup);
+        when(studentRepository.findById(studentId)).thenReturn(Optional.of(student));
+        when(studentRepository.save(any(Student.class))).thenReturn(updatedStudent);
+
+        StudentDTO studentSavedDTO = studentService.updateStudent(studentDTO);
+        Assertions.assertEquals(studentSavedDTO.getId(), studentDTO.getId());
+        Assertions.assertEquals(studentSavedDTO.getName(), studentDTO.getName());
+        Assertions.assertEquals(studentSavedDTO.getSurname(), studentDTO.getSurname());
+        Assertions.assertEquals(studentSavedDTO.getGroupId(), newGroup.getId());
+
+    }
 }

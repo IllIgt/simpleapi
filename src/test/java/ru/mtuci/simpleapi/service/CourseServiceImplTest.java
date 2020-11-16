@@ -159,4 +159,31 @@ class CourseServiceImplTest {
         courseService.delete(courseId);
         verify(courseRepository).delete(courseId);
     }
+
+    @Test
+    void updateCourse() {
+        Course newCourse = new Course();
+        newCourse.setId(course.getId());
+        newCourse.setName(course.getName());
+        newCourse.setCode(course.getCode());
+        newCourse.setElective(course.isElective());
+        newCourse.setHours(course.getHours());
+        newCourse.setGroups(course.getGroups());
+
+        when(groupRepository.findAllById(courseDTO.getGroups())).thenReturn(course.getGroups());
+        when(courseRepository.save(any(Course.class))).thenReturn(course);
+
+        CourseDTO foundCourse = courseService.updateCourse(courseDTO);
+
+        Assertions.assertEquals(foundCourse.getId(), newCourse.getId());
+        Assertions.assertEquals(foundCourse.getCode(), newCourse.getCode());
+        Assertions.assertEquals(foundCourse.getName(), newCourse.getName());
+        Assertions.assertEquals(foundCourse.getHours(), newCourse.getHours());
+        Assertions.assertEquals(foundCourse.isElective(), newCourse.isElective());
+        Assertions.assertEquals(foundCourse.getGroups(),
+                newCourse.getGroups()
+                        .stream()
+                        .map(Group::getId)
+                        .collect(Collectors.toList()));
+    }
 }

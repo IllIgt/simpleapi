@@ -143,4 +143,18 @@ class StudentControllerTest {
         this.mockMvc.perform(delete("/api/v1/students/{id}", studentId))
                 .andExpect(status().isNoContent());
     }
+
+    @Test
+    void shouldUpdateUser() throws Exception {
+        Long studentId = 1L;
+        StudentDTO studentDTO = studentDTOList.get(0);
+        given(studentService.updateStudent(any(StudentDTO.class))).willReturn(studentDTO);
+                this.mockMvc.perform(put("/api/v1/students/{id}", studentId)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(objectMapper.writeValueAsString(studentDTO)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is(studentDTO.getName())))
+                .andExpect(jsonPath("$.surname", is(studentDTO.getSurname())))
+                .andExpect(jsonPath("$.groupId", is(studentDTO.getGroupId().intValue())));
+    }
 }

@@ -50,6 +50,15 @@ public class StudentController {
         return studentDTO;
     }
 
+    @PutMapping("/{id}")
+    @ResponseBody
+    public StudentDTO updateStudent (@PathVariable("id") long id,
+                               @RequestBody StudentDTO student) {
+        student.setId(id);
+        log.info("update student");
+        return studentService.updateStudent(student);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") Long id) {
