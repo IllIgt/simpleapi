@@ -64,5 +64,5 @@ spec:
 ![Image of pods](./markdown/terminal_cluster.png?raw=true)
 
 
-##Kubernetes Dashboard
+## Kubernetes Dashboard
 [**VIDEO**](https://youtu.be/vidHRsxZXVw)

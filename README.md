@@ -116,3 +116,7 @@ mvn package -Dmaven.test.skip=true
 ### Extras
 
 [**Sonar code analyze**](https://sonarcloud.io/dashboard?id=IllIgt_simpleapi)
+
+## DB SCHEMA
+
+![Image_of_db_schema](./markdown/mtuci_db_shema.png)
